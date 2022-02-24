@@ -1,6 +1,6 @@
 
   provider "aws" {
-  region     = "ap-southeast-1"
+  region     = "us-west-2"
 }
 
 resource "aws_instance" "myec2" {
