@@ -6,12 +6,12 @@ pipeline {
                 sh 'df -h'
             }
         },
-         stage('Build') {
+         stage('test') {
             steps {
                 sh 'du -sh'
             }
         },
-         stage('Build') {
+         stage('deploy') {
             steps {
                 sh 'whoami'
             }
