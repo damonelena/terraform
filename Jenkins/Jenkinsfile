@@ -16,5 +16,10 @@ pipeline {
                 sh 'whoami'
             }
         }
+        stage('Deploy') {
+            steps {
+                sh 'hostname -I'
+            }
+        }
     }
 }
