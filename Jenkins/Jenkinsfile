@@ -1,24 +1,27 @@
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+            yaml '''
+apiVersion: v1
+kind: Pod
+spec:
+  containers:
+  - name: kubectl
+    image: bitnami/kubectl:latest
+    command:
+    - sleep
+    args:
+    - "99d"
+'''
+        }
+    }
+
     stages {
         stage('Build') {
             steps {
-                sh 'df -h'
-            }
-        }
-        stage('Test') {
-            steps {
-                sh 'du -sh'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                sh 'whoami'
-            }
-        }
-        stage('Deployed') {
-            steps {
-                sh 'hostname -I'
+                container('kubectl') {
+                    sh 'kubectl get nodes'
+                }
             }
         }
     }
