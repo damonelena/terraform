@@ -9,22 +9,17 @@ spec:
   - name: kubectl
     image: bitnami/kubectl:latest
     command:
-    - sleep
-    args:
-    - "99d"
+    - cat
+    tty: true
 '''
         }
     }
 
     stages {
-        stage('Build') {
+        stage('Test') {
             steps {
                 container('kubectl') {
-                    sh '''
-                        whoami
-                        hostname
-                        kubectl version --client
-                    '''
+                    sh 'echo hello'
                 }
             }
         }
