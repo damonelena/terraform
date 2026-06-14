@@ -20,7 +20,11 @@ spec:
         stage('Build') {
             steps {
                 container('kubectl') {
-                    sh 'kubectl get nodes'
+                    sh '''
+                        whoami
+                        hostname
+                        kubectl version --client
+                    '''
                 }
             }
         }
